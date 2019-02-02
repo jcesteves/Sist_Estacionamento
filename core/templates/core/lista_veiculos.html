@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block menu %}
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'core_home' %}">Home</a>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Serviços</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="{% url 'core_lista_pessoas' %}">Pessoas</a>
+      <a class="dropdown-item active" href="{% url 'core_lista_veiculos' %}">Veiculos</a>
+      <a class="dropdown-item" href="{% url 'core_lista_movrot' %}">Rotativos</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="{% url 'core_lista_mensalistas' %}">Mensalistas</a>
+      <a class="dropdown-item" href="{% url 'core_lista_movmensalistas' %}">Mov_Mensalistas</a>
+    </div>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Logout</a>
+  </li>
+</ul>
+
+{% endblock %}
+
+{% block main %}
+
+<div class="row">
+    <div class="col">
+        <h1 class="text-center">Sistema de Cadastro de Veiculos</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <br>
+        <h2>Cadastro</h2>
+        <form action="{% url 'core_veiculo_novo' %}" method="POST">
+            {% csrf_token %}
+            {{ form|bootstrap }}
+
+            <button type="submit" class="btn btn-success">Cadastrar</button>
+        </form>
+    </div>
+
+<br>
+
+    <div class="col-sm-6">
+        <br>
+        <h1 class="text-center">Lista de Veiculos</h1>
+        <br>
+        <table class="table table-striped">
+                  <thead>
+                      <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Marca</th>
+                      <th scope="col">Placa</th>
+                      <th scope="col">Proprietario</th>
+                      <th scope="col">Cor</th>
+                      <th scope="col">Observações</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {% for veiculo in veiculos %}
+                      <tr>
+                      <th scope="row">{{ veiculo.id }}</th>
+                      <td>{{ veiculo.marca }}</td>
+                      <td>{{ veiculo.placa }}</td>
+                      <td>{{ veiculo.propietario }}</td>
+                      <td>{{ veiculo.cor }}</td>
+                      <td>{{ veiculo.observacoes }}</td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+                </table>
+    </div>
+</div>
+
+{% endblock %}
