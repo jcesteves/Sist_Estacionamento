@@ -17,9 +17,19 @@
       <a class="dropdown-item" href="{% url 'core_lista_movmensalistas' %}">Mov_Mensalistas</a>
     </div>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Logout</a>
-  </li>
+    {% if user.is_authenticated %}
+      <li class="nav-item ">
+        <a class="nav-link disabled" href="#">Ola {{ user }}</a>
+      </li>
+
+      <li class="nav-item ">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+    {% else %}
+      <li class="nav-item ">
+        <a class="nav-link" href="{% url 'login' %}">Login</a>
+      </li>
+    {% endif %}
 </ul>
 
 {% endblock %}

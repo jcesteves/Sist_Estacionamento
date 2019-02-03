@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block main %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+
+<form class="text-center" method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<table class="table">
+<h1>Página de Login</h1>
+    <br>
+<tr>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+</tr>
+</table>
+
+<input type="submit" value="login" class="btn btn-dark">
+<input type="hidden" name="next" value="{{ next }}">
+</form>
+
+    <br>
+{# Assumes you setup the password_reset view in your URLconf #}
+<p class="text-center"><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
+
+{% endblock %}
