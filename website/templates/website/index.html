@@ -1,8 +1,81 @@
 {% extends 'website/base.html' %}
+{% load static %}
 
 {% block main %}
     <br>
-    <h1 class="text-center">Seja bem vindo ao website</h1>
+    <div class="class row">
+        <div class="class col-6 row-space">
 
+            <h1 class="text-center">Estacionamento 24hrs</h1>
+            <span>Slogan da sua empresa aqui</span>
+        </div>
 
+        <div class="class col-6 row-space">
+
+            <img src="{%static 'img/car_p.jpg'%}" alt="Estacionamento 24hrs">
+
+        </div>
+    </div>
+
+    {% include 'website/menu.html' %}
+
+    <div class="class row row-space">
+        <div class="class col-6">
+            <br>
+            Mussum Ipsum, cacilds vidis litro abertis.
+            Não sou faixa preta cumpadi, sou preto inteiris, inteiris.
+            Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose.
+            A ordem dos tratores não altera o pão duris. Admodum accumsan disputationi eu sit.
+            Vide electram sadipscing et per.
+        </div>
+        <div class="class col-6">
+            <br>
+            Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis.
+            Interagi no mé, cursus quis, vehicula ac nisi.
+            Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.
+            Paisis, filhis, espiritis santis.
+        </div>
+    </div>
+
+    <div class="class row">
+        <div class="class col-4">
+            <br>
+            Mussum Ipsum, cacilds vidis litro abertis.
+            Não sou faixa preta cumpadi, sou preto inteiris, inteiris.
+            Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose.
+            A ordem dos tratores não altera o pão duris. Admodum accumsan disputationi eu sit.
+            Vide electram sadipscing et per.
+        </div>
+        <div class="class col-4">
+            <br>
+            <img src="{% static 'img/car.jpeg' %}" alt="car" width="350">
+        </div>
+         <div class="class col-4">
+             <br>
+            Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis.
+            Interagi no mé, cursus quis, vehicula ac nisi.
+            Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.
+            Paisis, filhis, espiritis santis.
+        </div>
+    </div>
+
+    <div class="class row">
+        <div class="class col-6">
+            <br>
+            Mussum Ipsum, cacilds vidis litro abertis.
+            Não sou faixa preta cumpadi, sou preto inteiris, inteiris.
+            Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose.
+            A ordem dos tratores não altera o pão duris. Admodum accumsan disputationi eu sit.
+            Vide electram sadipscing et per.
+        </div>
+        <div class="class col-6">
+            <br>
+            Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis.
+            Interagi no mé, cursus quis, vehicula ac nisi.
+            Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.
+            Paisis, filhis, espiritis santis.
+        </div>
+    </div>
+    <br>
+    {% include 'website/footer.html' %}
 {% endblock %}
