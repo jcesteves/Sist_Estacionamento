@@ -14,10 +14,24 @@
 </head>
 <body>
     <div class="container">
+        <br>
+        <div class="class row">
+            <div class="class col-6 row-space">
 
+            <h1 class="text-center">Estacionamento 24hrs</h1>
+            <span>Slogan da sua empresa aqui</span>
+            </div>
+
+            <div class="class col-6 row-space">
+
+                <img src="{%static 'img/car_p.jpg'%}" alt="Estacionamento 24hrs">
+
+            </div>
+        </div>
+        {% include 'website/menu.html' %}
         {% block main %}
         {% endblock %}
+        {% include 'website/footer.html' %}
     </div>
-
 </body>
 </html>

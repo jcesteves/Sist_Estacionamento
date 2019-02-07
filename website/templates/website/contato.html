@@ -1,0 +1,66 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block main %}
+    <div class="row">
+        <br>
+        <p>{{ mensagem }}</p>
+    </div>
+    <div class="class row row-space">
+
+        <div class="col-6">
+            <form method="POST">
+                {% csrf_token%}
+                 <div class="form-row">
+                    <div class="form-group col-md-12">
+                    <label for="inputEmail4">Email</label>
+                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email">
+                    </div>
+                 </div>
+                 <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputNome">Nome</label>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="Nome" name="nome">
+                      </div>
+
+                      <div class="form-group col-md-6">
+                        <label for="inputSobrenome">Sobrenome</label>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="Sobrenome" name="sobrenome">
+                      </div>
+                 </div>
+                <div class="form-group">
+                    <label for="inputAddress2">Endereço 2</label>
+                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="endereco">
+                </div>
+                <div class="form-group">
+                    <textarea name="mensagem" cols="57" rows="10" class="form-control"></textarea>
+                </div>   
+                  <div class="form-group">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="gridCheck" name="check">
+                      <label class="form-check-label" for="gridCheck">
+                        Receber notícias
+                      </label>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+
+        <div class="col-6 row-space">
+            <p>
+                 Mussum Ipsum, cacilds vidis litro abertis.
+                 Não sou faixa preta cumpadi, sou preto inteiris, inteiris.
+                 Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose.
+                 A ordem dos tratores não altera o pão duris. Admodum accumsan disputationi eu sit.
+                 Vide electram sadipscing et per.
+            </p>
+
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.0467559718527!2d-46.
+            64839828467369!3d-23.530820684698067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!
+            1s0x94ce58697e583619%3A0xd7212f928cd474f9!2sAlameda+Ribeiro+da+Silva%2C+275+-+Campos+El%C3%ADseos%2C+
+            S%C3%A3o+Paulo+-+SP%2C+01217-010!5e0!3m2!1spt-BR!2sbr!4v1549325485979" width="500" height="400"
+            frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+    </div>
+{% endblock %}

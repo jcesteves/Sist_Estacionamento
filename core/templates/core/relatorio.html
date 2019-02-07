@@ -1,0 +1,20 @@
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Nome</td>
+        <td>CPF</td>
+        <td>Endereco</td>
+        <td>Telefone</td>
+    </tr>
+
+    {% for pessoa in pessoas %}
+        <tr>
+            <td>{{ pessoa.id }}</td>
+            <td>{{ pessoa.nome }}</td>
+            <td>{{ pessoa.cpf }}</td>
+            <td>{{ pessoa.endereco }}</td>
+            <td>{{ pessoa.telefone }}</td>
+        </tr>
+    {% endfor %}
+
+</table>

@@ -19,7 +19,8 @@ from .views import (home,
                     veiculo_delete,
                     movrot_delete,
                     mensalista_delete,
-                    movmen_delete)
+                    movmen_delete,
+                    pdf, relat_csv)
 
 urlpatterns = [
     path('', home, name='core_home'),
@@ -43,4 +44,6 @@ urlpatterns = [
     path('movmen-novo', movmen_novo, name='core_movmen_novo'),
     path('movmen-update/<int:id>/', movmen_update, name='core_movmen_update'),
     path('movmen-delete/<int:id>/', movmen_delete, name='core_movmen_delete'),
+    path('relatorio/', pdf.as_view(), name='relatorio_pdf'),
+    path('relat_csv/', relat_csv.as_view(), name='relatorio_csv')
 ]

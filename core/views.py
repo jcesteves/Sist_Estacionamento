@@ -8,13 +8,19 @@ from .models import (Pessoa,
                      )
 
 from .forms import Pessoaform, Veiculoform, Movrotform, Mensalistaform, Movmenform
+from django.http import HttpResponse
+from django.template.loader import get_template
+import xhtml2pdf.pisa as pisa
+import io
+from django.views.generic.base import View
+import csv
 
-@login_required
+@login_required()
 def home(request):
     return render(request, 'core/home.html')
 
 
-@login_required
+@login_required()
 def lista_pessoas(request):
     pessoas = Pessoa.objects.all()
     form = Pessoaform()
@@ -22,7 +28,7 @@ def lista_pessoas(request):
     return render(request, 'core/lista_pessoas.html', data)
 
 
-@login_required
+@login_required()
 def pessoa_nova(request):
     form = Pessoaform(request.POST or None)
     if form.is_valid():
@@ -30,7 +36,7 @@ def pessoa_nova(request):
     return redirect('core_lista_pessoas')
 
 
-@login_required
+@login_required()
 def pessoa_update(request, id):
     data = {}
     pessoa = Pessoa.objects.get(id=id)
@@ -47,7 +53,7 @@ def pessoa_update(request, id):
         return render(request, 'core/update_pessoa.html', data)
 
 
-@login_required
+@login_required()
 def pessoa_delete(request, id):
     pessoa = Pessoa.objects.get(id=id)
     if request.method == 'POST':
@@ -57,7 +63,7 @@ def pessoa_delete(request, id):
         return render(request, 'core/delete.html', {'obj': pessoa})
 
 
-@login_required
+@login_required()
 def lista_veiculos(request):
     veiculos = Veiculo.objects.all()
     form = Veiculoform()
@@ -65,7 +71,7 @@ def lista_veiculos(request):
     return render(request, 'core/lista_veiculos.html', data)
 
 
-@login_required
+@login_required()
 def veiculo_novo(request):
     form = Veiculoform(request.POST or None)
     if form.is_valid():
@@ -73,7 +79,7 @@ def veiculo_novo(request):
     return redirect('core_lista_veiculos')
 
 
-@login_required
+@login_required()
 def veiculo_update(request, id):
     data = {}
     veiculo = Veiculo.objects.get(id=id)
@@ -89,7 +95,7 @@ def veiculo_update(request, id):
         return render(request, 'core/update_veiculo.html', data)
 
 
-@login_required
+@login_required()
 def veiculo_delete(request, id):
     veiculo = Veiculo.objects.get(id=id)
     if request.method == 'POST':
@@ -99,7 +105,7 @@ def veiculo_delete(request, id):
         return render(request, 'core/delete.html', {'obj': veiculo})
 
 
-@login_required
+@login_required()
 def lista_movrotativos(request):
     mov_rotativos = Movrot.objects.all()
     form = Movrotform()
@@ -107,7 +113,7 @@ def lista_movrotativos(request):
     return render(request, 'core/lista_movrot.html', data)
 
 
-@login_required
+@login_required()
 def movrot_novo(request):
     form = Movrotform(request.POST or None)
     if form.is_valid():
@@ -115,7 +121,7 @@ def movrot_novo(request):
     return redirect('core_lista_movrot')
 
 
-@login_required
+@login_required()
 def movrot_update(request, id):
     data = {}
     movrot = Movrot.objects.get(id=id)
@@ -131,7 +137,7 @@ def movrot_update(request, id):
         return render(request, 'core/update_movrot.html', data)
 
 
-@login_required
+@login_required()
 def movrot_delete(request, id):
     movrot = Movrot.objects.get(id=id)
     if request.method == 'POST':
@@ -141,7 +147,7 @@ def movrot_delete(request, id):
         return render(request, 'core/delete.html', {'obj': movrot})
 
 
-@login_required
+@login_required()
 def lista_mensalistas(request):
     mensalistas = Mensalista.objects.all()
     form = Mensalistaform()
@@ -149,7 +155,7 @@ def lista_mensalistas(request):
     return render(request, 'core/lista_mensalistas.html', data)
 
 
-@login_required
+@login_required()
 def mensalista_novo(request):
     form = Mensalistaform(request.POST or None)
     if form.is_valid():
@@ -157,7 +163,7 @@ def mensalista_novo(request):
     return redirect('core_lista_mensalistas')
 
 
-@login_required
+@login_required()
 def mensalista_update(request, id):
     data = {}
     mensalista = Mensalista.objects.get(id=id)
@@ -173,7 +179,7 @@ def mensalista_update(request, id):
         return render(request, 'core/update_mensalista.html', data)
 
 
-@login_required
+@login_required()
 def mensalista_delete(request, id):
     mensalista = Mensalista.objects.get(id=id)
     if request.method == 'POST':
@@ -183,7 +189,7 @@ def mensalista_delete(request, id):
         return render(request, 'core/delete.html', {'obj': mensalista})
 
 
-@login_required
+@login_required()
 def lista_movmensalistas(request):
     mov_mensalistas = Movmen.objects.all()
     form = Movmenform()
@@ -191,6 +197,7 @@ def lista_movmensalistas(request):
     return render(request, 'core/lista_movmensalistas.html', data)
 
 
+@login_required()
 def movmen_novo(request):
     form = Movmenform(request.POST or None)
     if form.is_valid():
@@ -198,7 +205,7 @@ def movmen_novo(request):
     return redirect('core_lista_movmensalistas')
 
 
-@login_required
+@login_required()
 def movmen_update(request, id):
     data = {}
     movmen = Movmen.objects.get(id=id)
@@ -214,7 +221,7 @@ def movmen_update(request, id):
         return render(request, 'core/update_movmen.html', data)
 
 
-@login_required
+@login_required()
 def movmen_delete(request, id):
     movmen = Movmen.objects.get(id=id)
     if request.method == 'POST':
@@ -222,3 +229,48 @@ def movmen_delete(request, id):
         return redirect('core_lista_movmensalistas')
     else:
         return render(request, 'core/delete.html', {'obj': movmen})
+
+
+
+class Render:
+    @staticmethod
+    def render(path: str, param: dict, filename: str):
+        template = get_template(path)
+        html = template.render(param)
+        response = io.BytesIO()
+        pdf = pisa.pisaDocument(
+            io.BytesIO(html.encode('UTF-8')), response)
+        if not pdf.err:
+            response = HttpResponse(
+                response.getvalue(), content_type='application/pdf')
+            response['content-Disposition'] = 'attachment;filename=%s.pdf' %filename
+            return response
+        else:
+            return HttpResponse('Error Rendering PDF', status=400)
+
+
+class pdf(View):
+    def get(self, request):
+        pessoas = Pessoa.objects.all()
+        param = {
+            'pessoas': pessoas,
+            'request': request,
+        }
+        return Render.render('core/relatorio.html', param, 'Relatório de Pessoas Cadastradas')
+
+
+class relat_csv(View):
+    def get(self, request):
+        response = HttpResponse(content_type='text/csv')
+        response['content-Disposition'] = 'attachment; filename="somefilename.scv"'
+        pessoa = Pessoa.objects.all()
+
+        writer = csv.writer(response)
+        writer.writecol(['id','nome', 'cpf', 'endereco', 'telefone'])
+
+        for pessoas in pessoa:
+            writer.writerow(
+                [pessoas.id, pessoas.nome, pessoas.cpf, pessoas.endereco, pessoas.telefone]
+            )
+
+        return response
